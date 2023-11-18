@@ -1,31 +1,8 @@
-import express from "express";
-import {config} from 'dotenv'
-import pg from "pg";
+require('dotenv').config();
 
 
-config()
+const Server = require('./models/server');
 
-const app = express();
-const pool = new pg.Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
-})
+const server = new Server();
 
-app.get('/', (req, res) => {
-    res.send('Hello World')
-})
-
-app.get('/ping', async(req, res) => {
-    const result = await pool.query('SELECT NOW()')
-    return res.json(result.rows[0])
-})
-
-app.get('/generic', (req, res) => {
-    res.render('generic', {
-        nombre: 'Jimmy Osma',
-        titulo: 'Curso de Node'
-    })
-})
-
-app.listen(3000)
-console.log('Server on port', 3000);
+server.listen();
