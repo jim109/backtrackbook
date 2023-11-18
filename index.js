@@ -20,5 +20,12 @@ app.get('/ping', async(req, res) => {
     return res.json(result.rows[0])
 })
 
+app.get('/generic', (req, res) => {
+    res.render('generic', {
+        nombre: 'Jimmy Osma',
+        titulo: 'Curso de Node'
+    })
+})
+
 app.listen(3000)
 console.log('Server on port', 3000);
