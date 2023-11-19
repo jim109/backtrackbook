@@ -6,8 +6,8 @@ class Server {
     constructor() {
         this.app = express()
         this.port = process.env.PORT
-        this.tourPath = '/api/tours'
-        this.dealsPath = '/api/deals'
+        this.api = '/api'
+       
 
         //Middlewares
         this.middlewares()
@@ -29,8 +29,9 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.tourPath, require('../routes/tours'))
-        this.app.use(this.dealsPath, require('../routes/deals'))
+        this.app.use(this.api, require('../routes'))
+        // this.app.use(this.api, require('../routes'))
+        
     }
 
     listen() {
