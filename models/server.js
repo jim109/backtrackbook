@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const morgan = require('morgan')
 
 class Server {
 
@@ -25,6 +26,9 @@ class Server {
 
         //Directorio publico
         this.app.use(express.static('public'))
+
+        //loggin
+        this.app.use(morgan('dev'))
 
     }
 

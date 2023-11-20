@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const { dealsGet, toursGet } = require('../controllers');
+const { dealsGet, toursGet, aboutsGet } = require('../controllers');
 
 const router = Router();
 
@@ -9,6 +9,7 @@ const router = Router();
 
     router.get('/tours', toursGet)
 
+    router.get('/abouts', aboutsGet)
 
 
 

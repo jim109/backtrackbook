@@ -53,7 +53,28 @@ const toursGet = async(req, res = response) => {
     }
 }
 
+const aboutsGet = async(req, res = response) => {
+    try {
+        const result = await pool.query(`
+            SELECT clientes.nombre_cliente, clientes.apellido_cliente, clientes.img_cliente, aboutus.recomendacion
+            FROM CLIENTES
+            JOIN ABOUTUS ON clientes.clienteid = aboutus.clienteid;
+            `)
+        return res.status(200).json({
+            result: result.rows
+        })
+    } catch (error) {
+        console.error('Error en la consulta:', error);
+        return res.status(500).json({
+            error: 'Error en el servidor'
+        });
+    }
+}
+
+
+
 module.exports = {
     dealsGet,
-    toursGet
+    toursGet,
+    aboutsGet,
 }
